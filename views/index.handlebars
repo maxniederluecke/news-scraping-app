@@ -1,0 +1,72 @@
+<style>
+body {
+    background-color: #AAACCC;
+}
+    a:link {
+        color: black;
+    }
+    a:visited {
+        color: black;
+    }
+    form {
+        background-color: white;
+        padding: 2%;
+    }
+    .yourcomment {
+        width: 100%;
+    }
+</style>
+
+<div class="container">
+    <h1>NHL News Around the League</h1>
+    <br>
+    {{#each news}}
+    <div class="jumbotron">
+        <h2><a href={{url}} target="_blank">{{headline}}</a></h2>
+        <hr class="my-4">
+        <p>Summary: {{summary}}</p>
+        <br>
+        <div class="container comments" data-id="{{_id}}">
+            <h3>Comments: </h3>
+            <form>
+                <p>Add your comment here</p>
+                Name:<br>
+                <input type='text' name='name' class="name">
+                <br><br>
+                Comment:<br>
+                <textarea rows="3" name='body' class="body"></textarea>
+                <br><br>
+                <button class="btn btn-primary add-comment" data-id={{_id}}>Add Comment</button>
+            </form>
+            <br>
+           {{>comments}}
+        </div>
+    </div>
+    <br>
+    {{/each}}
+</div>
+
+<script>
+    $(".add-comment").click(function (event) {
+            event.preventDefault();
+            var name = ($(this).parent().find(".name").val());
+            var body = ($(this).parent().find(".body").val());
+            var ID = $(this).attr("data-id");
+            $.ajax({
+                method: "POST",
+                url: "/news/" + ID,
+                data: {
+                    name: name,
+                    comment: body
+                }
+            })
+        });
+    
+    $(".delete-comment").click(function(event){
+        event.preventDefault();
+        $.ajax({
+            method: "DELETE",
+            url: "/comment/" + ($(this).attr("data-id"))
+        })
+    });   
+</script>

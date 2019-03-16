@@ -1,0 +1,10 @@
+{{#each comment}}
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{name}}:</div>
+    <div class="card-body">
+        <p class="card-text"> {{body}}</p> 
+        <br><br> 
+        <button type="button" class="btn btn-secondary btn-sm delete-comment" data-id="{{_id}}">Delete Comment</button>
+    </div>
+</div>
+{{/each}}
