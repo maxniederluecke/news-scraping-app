@@ -51,7 +51,7 @@ app.get("/", function (req, res) {
     })
 });
 
-app.delete("/comment/:id", function(req, res){
+app.delete("/comments/:id", function(req, res){
     db.Comment.findByIdAndDelete(req.params.id)
     .then(function(){
         console.log("Comment deleted");

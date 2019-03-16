@@ -1,20 +1,6 @@
 <style>
 body {
     background-color: #AAACCC;
-}
-    a:link {
-        color: black;
-    }
-    a:visited {
-        color: black;
-    }
-    form {
-        background-color: white;
-        padding: 2%;
-    }
-    .yourcomment {
-        width: 100%;
-    }
 </style>
 
 <div class="container">
@@ -66,7 +52,7 @@ body {
         event.preventDefault();
         $.ajax({
             method: "DELETE",
-            url: "/comment/" + ($(this).attr("data-id"))
+            url: "/comments/" + ($(this).attr("data-id"))
         })
     });   
 </script>
